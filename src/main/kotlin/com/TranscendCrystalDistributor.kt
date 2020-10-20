@@ -47,7 +47,7 @@ class TranscendCrystalDistributor {
         memberList = rawInput.replace("\r\n", "|").replace("\n", "|").split("|").map {
             val comp = it.split(" ")
             Member(comp[0], comp[1].toInt())
-        }.toTypedArray()
+        }.sortedByDescending { it.value }.toTypedArray()
 
         // 읽은 값 출력
         println("--- 각 멤버별 기여도 ---")
