@@ -21,3 +21,35 @@
 
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
+
+
+# -----------------------
+
+# OSX
+.DS_Store
+
+# GRADLE
+.gradle
+/local.properties
+
+# BUILD
+/build
+
+# crashlytics
+crashlytics-build.properties
+com_crashlytics_export_strings.xml
+
+# Android Studio
+*.iml
+*.iws
+*.ipr
+/.idea
+manifest-merger-production-release-report.txt
+/captures
+
+#ANDROID
+*.apk
+
+
+# keystore info
+keystore.properties
