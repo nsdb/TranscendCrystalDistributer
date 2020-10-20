@@ -15,7 +15,10 @@ class TranscendCrystalDistributor {
 
     // Input
     private val rawInput = "황금나사 675\n" +
-            "백은나사 595\n"
+            "백은나사 595\n" +
+            "얼음나사 500\n" +
+            "투명나사 700\n" +
+            "초합금나사 200"
 
     // 멤버와 기여도 목록
     private var memberList: Array<Member> = arrayOf()
