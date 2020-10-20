@@ -46,30 +46,23 @@ class TranscendCrystalDistributor {
 
     fun read() {
 
-        // 읽기
+        // 읽기 및 정렬
         memberList = rawInput.replace("\r\n", "|").replace("\n", "|").split("|").map {
             val comp = it.split(" ")
             Member(comp[0], comp[1].toInt())
         }.sortedByDescending { it.value }.toTypedArray()
 
-        // 읽은 값 출력
-        println("--- 각 멤버별 기여도 ---")
-        memberList.forEach {
-            println("- " + it.name + " : " + it.value)
-        }
-        println()
-
     }
 
     fun makeTable() {
 
-        println("--- 초월 수정 뽑기 확률표 ---")
+        println("--- 각 멤버별 기여도 및 확률 ---")
 
         // 확률 계산 및 출력
         val valueSum = memberList.sumBy { it.value }
         memberList.forEach {
             it.chance = it.value.toDouble() / valueSum
-            println("- " + it.name + " : " + String.format("%.2f%%", it.chance * 100))
+            println("- " + it.name + " : " + it.value + " (" + String.format("%.2f%%", it.chance * 100) + ")")
         }
 
         println()
