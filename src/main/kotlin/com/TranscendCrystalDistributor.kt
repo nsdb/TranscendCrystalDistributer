@@ -25,6 +25,9 @@ class TranscendCrystalDistributor {
         // 총 시도 횟수
         private const val TOTAL_COUNT = 10
 
+        // 최대 당첨 횟수
+        private const val MAX_CHOSEN_COUNT = 2
+
     }
 
 
@@ -40,6 +43,8 @@ class TranscendCrystalDistributor {
 
         println("--- 초월 수정 뽑기를 시작합니다! ---")
         println("- 진행 날짜 : " + getCurrentTimeString())
+        println("- 뽑기 횟수 : $TOTAL_COUNT")
+        println("- 최대 당첨 횟수 : $MAX_CHOSEN_COUNT")
         println("--- 각 확률은 3번째 자리에서 반올림되어 총 합이 100%가 아닐 수 있음 ---")
         println()
 
@@ -83,7 +88,7 @@ class TranscendCrystalDistributor {
         println("--- 뽑기 시작 ---")
         println()
 
-        for(i in 0 until TOTAL_COUNT) {
+        while(tryCount < TOTAL_COUNT) {
             Thread.sleep(100) // 시드 갱신용
             elect()
         }
@@ -113,8 +118,13 @@ class TranscendCrystalDistributor {
         var cursor = 0.0
         for(member in memberList) {
             if(cursor + member.chance > randomValue) {
-                member.pickedCount++
                 println("당첨 : " + member.name)
+                if(member.pickedCount >= MAX_CHOSEN_COUNT) {
+                    println("그러나 최대 당첨 횟수에 도달하여 재투표합니다.")
+                    tryCount--
+                } else {
+                    member.pickedCount++
+                }
                 break
             } else {
                 cursor += member.chance
