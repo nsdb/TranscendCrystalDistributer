@@ -13,19 +13,27 @@ data class Member(val name: String, // 이름
 
 class TranscendCrystalDistributor {
 
-    // Input
-    private val rawInput = "황금나사 675\n" +
-            "백은나사 595\n" +
-            "얼음나사 500\n" +
-            "투명나사 700\n" +
-            "초합금나사 200"
+    companion object {
 
-    // 멤버와 기여도 목록
+        // 멤버와 기여도
+        private const val INPUT = "황금나사 675\n" +
+                "백은나사 595\n" +
+                "얼음나사 500\n" +
+                "투명나사 700\n" +
+                "초합금나사 200"
+
+        // 총 시도 횟수
+        private const val TOTAL_COUNT = 10
+
+    }
+
+
+
+    // 불러온 멤버와 기여도 목록
     private var memberList: Array<Member> = arrayOf()
 
     // 시도 횟수
     private var tryCount = 0
-    private val totalCount = 10
 
 
     constructor() {
@@ -47,7 +55,7 @@ class TranscendCrystalDistributor {
     fun read() {
 
         // 읽기 및 정렬
-        memberList = rawInput.replace("\r\n", "|").replace("\n", "|").split("|").map {
+        memberList = INPUT.replace("\r\n", "|").replace("\n", "|").split("|").map {
             val comp = it.split(" ")
             Member(comp[0], comp[1].toInt())
         }.sortedByDescending { it.value }.toTypedArray()
@@ -75,7 +83,7 @@ class TranscendCrystalDistributor {
         println("--- 뽑기 시작 ---")
         println()
 
-        for(i in 0 until totalCount) {
+        for(i in 0 until TOTAL_COUNT) {
             Thread.sleep(100) // 시드 갱신용
             elect()
         }
